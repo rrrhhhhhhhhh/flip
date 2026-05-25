@@ -29,6 +29,15 @@
       cursor: none;
     }
 
+    html,
+    body,
+    .card,
+    .card *,
+    .face,
+    .face img {
+      cursor: none !important;
+    }
+
     .card-inner {
       position: relative;
       width: 100%;
@@ -66,7 +75,7 @@
 </head>
   
 <script>
-const emojis = ["✦", "✳", "✺", "✶"];
+const emojis = ["⏳", "🔌", "💡", "🕯️"]; // change these to whatever you want
 let i = 0;
 
 document.addEventListener("mousemove", (e) => {
@@ -74,20 +83,22 @@ document.addEventListener("mousemove", (e) => {
   el.textContent = emojis[i % emojis.length];
   i++;
 
-  el.style.position = "fixed";
-  el.style.left = e.clientX + "px";
-  el.style.top = e.clientY + "px";
-  el.style.pointerEvents = "none";
-  el.style.fontSize = "18px";
-  el.style.transform = "translate(-50%, -50%)";
-  el.style.zIndex = "9999";
-  el.style.transition = "all 0.8s ease-out";
-  el.style.opacity = "1";
+  Object.assign(el.style, {
+    position: "fixed",
+    left: e.clientX + "px",
+    top: e.clientY + "px",
+    pointerEvents: "none",
+    fontSize: "18px",
+    transform: "translate(-50%, -50%)",
+    zIndex: "99999",
+    opacity: "1",
+    transition: "transform 0.8s ease-out, opacity 0.8s ease-out"
+  });
 
   document.body.appendChild(el);
 
   requestAnimationFrame(() => {
-    el.style.transform = "translate(-50%, -50%) scale(1.8)";
+    el.style.transform = "translate(-50%, -50%) scale(2)";
     el.style.opacity = "0";
   });
 
