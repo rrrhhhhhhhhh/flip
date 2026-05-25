@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flipping Shirt</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: min(400px, 90vw);
+      aspect-ratio: 400 / 620;
+      perspective: 1600px;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 2.2s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+    }
+
+    .face img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card" id="shirtCard">
+    <div class="card-inner">
+      <div class="face front">
+        <img src="./resources/images/shirt.jpg" alt="Front shirt" />
+      </div>
+
+      <div class="face back">
+        <img src="./resources/images/shirttt.jpeg" alt="Back shirt" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('shirtCard');
+
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+  </script>
+</body>
+</html>
